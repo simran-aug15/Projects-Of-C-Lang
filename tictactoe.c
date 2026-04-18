@@ -2,13 +2,14 @@
 #include <stdlib.h>
 #include <conio.h>
 
-char board[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
+char board[3][3];
 
-// Clear the board
-void removeNumber() {
+// Reset board with numbers 1 to 9
+void resetBoard() {
+    char value = '1';
     for (int i = 0; i < 3; i++) {
         for (int j = 0; j < 3; j++) {
-            board[i][j] = ' ';
+            board[i][j] = value++;
         }
     }
 }
@@ -29,25 +30,23 @@ void draw() {
 
 // Check for a win
 int check() {
-    // Horizontal
     for (int i = 0; i < 3; i++) {
-        if (board[i][0] == board[i][1] && board[i][1] == board[i][2] && board[i][0] != ' ') {
+        if (board[i][0] == board[i][1] && board[i][1] == board[i][2]) {
             return 1;
         }
     }
 
-    // Vertical
     for (int i = 0; i < 3; i++) {
-        if (board[0][i] == board[1][i] && board[1][i] == board[2][i] && board[0][i] != ' ') {
+        if (board[0][i] == board[1][i] && board[1][i] == board[2][i]) {
             return 1;
         }
     }
 
-    // Diagonals
-    if (board[0][0] == board[1][1] && board[1][1] == board[2][2] && board[0][0] != ' ') {
+    if (board[0][0] == board[1][1] && board[1][1] == board[2][2]) {
         return 1;
     }
-    if (board[0][2] == board[1][1] && board[1][1] == board[2][0] && board[0][2] != ' ') {
+
+    if (board[0][2] == board[1][1] && board[1][1] == board[2][0]) {
         return 1;
     }
 
@@ -61,62 +60,69 @@ void inputValue(int input, char player) {
     board[row][col] = player;
 }
 
-// Validate a move
+// Validate move
 int isValidMove(int input) {
     if (input < 1 || input > 9) {
         return 0;
     }
+
     int row = (input - 1) / 3;
     int col = (input - 1) % 3;
-    return board[row][col] == ' ';
+
+    return board[row][col] != 'X' && board[row][col] != 'O';
 }
 
-// Main function
 int main() {
-    int input;
-    char player = 'X'; // Player X starts the game
-    int status = 0;
+    char choice;
 
-    draw();
-    printf("Press any key to start!\n");
-    getch();
+    do {
+        int input;
+        char player = 'X';
 
-    system("cls");
-    removeNumber();
+        resetBoard();
 
-    for (int i = 0; i < 9; i++) {
-        draw();
-
-        if (player == 'X') {
-            printf("Player X, your turn! Enter a number (1-9): ");
-        } else {
-            printf("Player O, your turn! Enter a number (1-9): ");
-        }
-        
-        scanf("%d", &input);
-        while (!isValidMove(input)) {
-            printf("Invalid move! Enter a valid number (1-9): ");
-            scanf("%d", &input);
-        }
-
-        inputValue(input, player);
-
-        if (check()) {
-            system("cls");
-            draw();
-            if (player == 'X') {
-                printf("Player X wins!\n");
-            } else {
-                printf("Player O wins!\n");
-            }
-            return 0;
-        }
-
-        player = (player == 'X') ? 'O' : 'X'; // Switch turns
         system("cls");
-    }
+        draw();
+        printf("Press any key to start!\n");
+        getch();
 
-    draw();
-    printf("It's a draw!\n");
+        system("cls");
+
+        for (int i = 0; i < 9; i++) {
+            draw();
+
+            printf("Player %c, your turn! Enter a number (1-9): ", player);
+            scanf("%d", &input);
+
+            while (!isValidMove(input)) {
+                printf("Invalid move! Enter a valid number (1-9): ");
+                scanf("%d", &input);
+            }
+
+            inputValue(input, player);
+
+            if (check()) {
+                system("cls");
+                draw();
+                printf("Player %c wins!\n", player);
+                break;
+            }
+
+            if (i == 8) {
+                system("cls");
+                draw();
+                printf("It's a draw!\n");
+            }
+
+            player = (player == 'X') ? 'O' : 'X';
+            system("cls");
+        }
+
+        printf("Do you want to play again? (y/n): ");
+        scanf(" %c", &choice);
+
+    } while (choice == 'y' || choice == 'Y');
+
+    printf("Thanks for playing!\n");
     return 0;
 }
