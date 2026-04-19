@@ -1,14 +1,38 @@
-❌⭕ Tic Tac Toe (C Language)
+# ❌⭕ Tic Tac Toe (C Language)
 
-💡 About the Project
-I built this Tic Tac Toe game using C as part of practicing core programming concepts.
-It’s a simple terminal-based game where two players take turns and the program checks for a winner or a draw.
-This project helped me focus on logic-building and writing structured code in C.
+## 💡 About
+A simple command-line Tic Tac Toe game built using C.  
+This project focuses on basic programming concepts like loops, conditionals, and arrays.
 
-🚀 Features
-Two-player mode (X vs O)
-Win detection (rows, columns, diagonals)
-Draw detection
-Turn-based gameplay
-Simple CLI interface
-Built using only standard C
+---
+
+## 🚀 Features
+- Two-player gameplay (X vs O)
+- Win detection (rows, columns, diagonals)
+- Draw detection
+- Turn-based system
+- Console-based interface
+
+---
+
+## 🛠️ Tech Stack
+- Language: C
+- Compiler: GCC
+- Platform: CLI
+
+---
+
+## 🎮 Gameplay
+- Grid: 3×3  
+- Players: X and O  
+- Input: positions 1–9  
+- Turns: alternate each move  
+- Win: 3 marks in a row (row, column, diagonal)  
+- Draw: all cells filled with no winner
+
+  ## 🔮 Future Improvements
+- Mode: single-player (AI)  
+- Levels: easy, medium, hard  
+- UI: improved terminal display  
+- Score: track wins/losses  
+- Input: validation for invalid moves  
