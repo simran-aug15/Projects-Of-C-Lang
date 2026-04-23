@@ -143,14 +143,31 @@ int main()
     {
         system("cls");
         draw();
-        printf("Enter any number : ");
-        scanf("%d", &input);
+        while (1){
+            printf("Player %d, enter any number (1-9): ", player);
+            if (scanf("%d", &input) != 1) {
+                printf("Invalid input!\n");
+                while (getchar() != '\n');
+                continue;
+            }
+            while (getchar() != '\n');
+            if (!isValidMove(input)) {
+                printf("Invalid move! Position already taken or out of range.\n");
+                continue;
+            }
+            break;
+        }
         move(input, player);
-
-        isValidMove();
-
-        player = !player;
+        if (check()) {
+            system("cls");
+            draw();
+            printf("Player %d wins!\n", player);
+            return 0;
+        }
+        player = (player == 1) ? 2 : 1;
     }
-
+    system("cls");
+    draw();
+    printf("It's a draw!\n");
     return 0;
 }
