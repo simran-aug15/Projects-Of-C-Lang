@@ -1,0 +1,121 @@
+@import url('https://fonts.googleapis.com/css2?family=Lilita+One&display=swap');
+
+body {
+    font-family: 'Lilita One', cursive;
+    margin: 0;
+    background-color: #1e002b;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+    position: relative;
+}
+
+.background-shapes {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 0;
+    overflow: hidden;
+}
+
+.background-shapes::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 800px;
+    height: 800px;
+    background: radial-gradient(circle, rgba(138, 43, 226, 0.4) 0%, rgba(138, 43, 226, 0) 70%);
+    transform: translate(-50%, -50%);
+}
+
+.dashboard-container {
+    position: relative;
+    z-index: 1;
+    text-align: center;
+}
+
+.game-title {
+    font-size: 6rem;
+    font-weight: bold;
+    margin-bottom: 2rem;
+    line-height: 1;
+}
+
+.title-tic {
+    color: #ffeb3b;
+    text-shadow: 0 0 10px #ffeb3b, 0 0 20px #ffeb3b;
+}
+
+.title-tac {
+    color: #448aff;
+    text-shadow: 0 0 10px #448aff, 0 0 20px #448aff;
+}
+
+.title-toe {
+    color: #ff4081;
+    text-shadow: 0 0 10px #ff4081, 0 0 20px #ff4081;
+}
+
+.board-preview-container {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 3rem;
+}
+
+.board-preview {
+    display: grid;
+    grid-template-columns: repeat(3, 80px);
+    grid-gap: 10px;
+    background-color: #11001b;
+    padding: 15px;
+    border-radius: 15px;
+    border: 3px solid #8a2be2;
+    box-shadow: 0 0 20px #8a2be2;
+}
+
+.board-preview .cell {
+    width: 80px;
+    height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 3.5rem;
+    border-radius: 10px;
+}
+
+.board-preview .cell:nth-child(odd) {
+    color: #448aff;
+}
+
+.board-preview .cell:nth-child(even) {
+    color: #ff4081;
+}
+
+.start-game-btn {
+    background: linear-gradient(to bottom, #ffeb3b, #f5c500);
+    color: #333;
+    border: none;
+    border-radius: 50px;
+    padding: 20px 60px;
+    font-size: 2rem;
+    font-family: 'Lilita One', cursive;
+    cursor: pointer;
+    box-shadow: 0 8px 0 #c7b82d, 0 15px 20px rgba(0,0,0,0.3);
+    transition: all 0.1s ease-in-out;
+}
+
+.start-game-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 10px 0 #c7b82d, 0 18px 25px rgba(0,0,0,0.3);
+}
+
+.start-game-btn:active {
+    transform: translateY(4px);
+    box-shadow: 0 4px 0 #c7b82d, 0 8px 10px rgba(0,0,0,0.3);
+}
