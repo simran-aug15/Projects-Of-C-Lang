@@ -4,6 +4,13 @@
 
 char board[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
 
+// Reads an integer and clears the input buffer to prevent infinite loop on invalid input
+int readInt(int *out) {
+    int result = scanf("%d", out);
+    while (getchar() != '\n');
+    return result;
+}
+
 // Clear the board
 void removeNumber() {
     for (int i = 0; i < 3; i++) {
@@ -93,10 +100,10 @@ int main() {
             printf("Player O, your turn! Enter a number (1-9): ");
         }
         
-        scanf("%d", &input);
+        if (readInt(&input) != 1) input = -1;
         while (!isValidMove(input)) {
             printf("Invalid move! Enter a valid number (1-9): ");
-            scanf("%d", &input);
+            if (readInt(&input) != 1) input = -1;
         }
 
         inputValue(input, player);
