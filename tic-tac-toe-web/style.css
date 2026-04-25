@@ -1,45 +1,114 @@
+:root {
+    --player-X-color: #09C372;
+    --player-O-color: #498AFB;
+    --background-color: #222;
+    --tile-color: #333;
+    --text-color: #eee;
+    --winning-tile-color: #1a1a1a;
+}
+
 body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: #f2f2f2;
-  margin-top: 40px;
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
 }
 
-h1 {
-  color: #333;
+.background {
+    text-align: center;
 }
 
-.board {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-gap: 5px;
-  justify-content: center;
-  margin: 20px auto;
+.title {
+    font-size: 2rem;
+    margin-bottom: 1rem;
 }
 
-.cell {
-  width: 100px;
-  height: 100px;
-  background: white;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #333;
-  cursor: pointer;
+.display {
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
 }
 
-.cell:hover {
-  background: #e6e6e6;
+.display-player {
+    font-weight: bold;
 }
 
-.status {
-  font-size: 18px;
-  margin-bottom: 10px;
+.playerX {
+    color: var(--player-X-color);
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+.playerO {
+    color: var(--player-O-color);
+}
+
+.container {
+    display: grid;
+    grid-template-columns: repeat(3, 100px);
+    grid-gap: 10px;
+    margin: 2rem auto;
+    position: relative;
+}
+
+.tile {
+    width: 100px;
+    height: 100px;
+    background-color: var(--tile-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    border-radius: 5px;
+}
+
+.tile:hover {
+    background-color: #444;
+}
+
+.tile.playerX {
+    color: var(--player-X-color);
+}
+
+.tile.playerO {
+    color: var(--player-O-color);
+}
+
+.winning-tile {
+    background-color: var(--winning-tile-color);
+}
+
+.controls {
+    margin-top: 1rem;
+}
+
+#reset, #backToDashboard {
+    background-color: #ff3b30;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin: 0 5px;
+}
+
+#backToDashboard {
+    background-color: #498AFB;
+}
+
+#reset:hover, #backToDashboard:hover {
+    background-color: #c00;
+}
+
+#backToDashboard:hover {
+    background-color: #3a7bd5;
+}
+
+.hide {
+    display: none;
 }
