@@ -75,6 +75,12 @@ int check()
 
     return 0;
 }
+int isValidMove(int input) {
+    if (input < 1 || input > 9) return 0;
+    int row = (input - 1) / 3;
+    int col = (input - 1) % 3;
+    return board[row][col] != 'X' && board[row][col] != 'O';
+}
 
 void move(int input, int player)
 {
@@ -145,12 +151,24 @@ int main()
         draw();
         printf("Enter any number : ");
         scanf("%d", &input);
+        // validate move in a loop
+        while (!isValidMove(input)) {
+            printf("Invalid move! Enter a valid number (1-9): ");
+            scanf("%d", &input);
+        }
+
         move(input, player);
+        // check for a win after every move
+     if (check()) {
+            system("cls");
+            draw();
+            printf("Player %c wins!\n", player == 1 ? 'X' : 'O');
+            return 0;
+        }
 
-        isValidMove();
-
-        player = !player;
+        player = (player == 1) ? 2 : 1;
     }
-
+    draw();
+    printf("It's a draw!\n");
     return 0;
 }
