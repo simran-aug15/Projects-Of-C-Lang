@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <time.h>
 
 char board[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
 
@@ -71,52 +72,151 @@ int isValidMove(int input) {
     return board[row][col] == ' ';
 }
 
-// Main function
-int main() {
-    int input;
-    char player = 'X'; // Player X starts the game
-    int status = 0;
+// Computer move logic
+void computerMove(char comp, char human) {
+    // 1. Try to win
+    for (int i = 1; i <= 9; i++) {
+        if (isValidMove(i)) {
+            inputValue(i, comp);
+            if (check()) { return; } // Winning move found
+            inputValue(i, ' '); // Undo
+        }
+    }
+    // 2. Try to block
+    for (int i = 1; i <= 9; i++) {
+        if (isValidMove(i)) {
+            inputValue(i, human);
+            if (check()) { 
+                inputValue(i, comp); // Block the win
+                return; 
+            }
+            inputValue(i, ' '); // Undo
+        }
+    }
+    // 3. Random move
+    int available[9];
+    int count = 0;
+    for (int i = 1; i <= 9; i++) {
+        if (isValidMove(i)) {
+            available[count++] = i;
+        }
+    }
+    if (count > 0) {
+        int r = rand() % count;
+        inputValue(available[r], comp);
+    }
+}
 
-    draw();
-    printf("Press any key to start!\n");
-    getch();
+// Game loop logic
+void playGame(int mode) {
+    int input;
+    char player = 'X'; // Human 1 is X
+    char computerChar = 'O'; // Computer is O (if mode == 2)
+    int moves = 0;
 
     system("cls");
     removeNumber();
 
-    for (int i = 0; i < 9; i++) {
+    while (moves < 9) {
         draw();
 
-        if (player == 'X') {
-            printf("Player X, your turn! Enter a number (1-9): ");
+        if (mode == 2 && player == computerChar) {
+            printf("Computer's turn...\n");
+            computerMove(computerChar, 'X');
         } else {
-            printf("Player O, your turn! Enter a number (1-9): ");
-        }
-        
-        scanf("%d", &input);
-        while (!isValidMove(input)) {
-            printf("Invalid move! Enter a valid number (1-9): ");
+            if (player == 'X') {
+                printf("Player X, your turn! Enter a number (1-9): ");
+            } else {
+                printf("Player O, your turn! Enter a number (1-9): ");
+            }
+            
             scanf("%d", &input);
-        }
+            while (!isValidMove(input)) {
+                printf("Invalid move! Enter a valid number (1-9): ");
+                scanf("%d", &input);
+            }
 
-        inputValue(input, player);
+            inputValue(input, player);
+        }
 
         if (check()) {
             system("cls");
             draw();
-            if (player == 'X') {
-                printf("Player X wins!\n");
+            if (mode == 2 && player == computerChar) {
+                printf("Computer wins!\n");
             } else {
-                printf("Player O wins!\n");
+                printf("Player %c wins!\n", player);
             }
-            return 0;
+            printf("\nPress any key to return to the menu...");
+            getch();
+            return;
         }
 
         player = (player == 'X') ? 'O' : 'X'; // Switch turns
+        moves++;
         system("cls");
     }
 
     draw();
     printf("It's a draw!\n");
+    printf("\nPress any key to return to the menu...");
+    getch();
+}
+
+void showMenu() {
+    system("cls");
+    printf("\n=============================\n");
+    printf("        TIC-TAC-TOE\n");
+    printf("=============================\n");
+    printf("1) Player vs Player\n");
+    printf("2) Player vs Computer\n");
+    printf("3) Help / Instructions\n");
+    printf("4) Exit\n");
+    printf("=============================\n");
+    printf("Enter your choice: ");
+}
+
+void showHelp() {
+    system("cls");
+    printf("\n--- Instructions ---\n");
+    printf("The game is played on a grid that's 3 squares by 3 squares.\n");
+    printf("Players take turns putting their marks (X or O) in empty squares.\n");
+    printf("The first player to get 3 of their marks in a row (up, down, across, or diagonally) is the winner.\n");
+    printf("When all 9 squares are full, the game is over. If no player has 3 marks in a row, the game ends in a tie.\n");
+    printf("\nBoard layout maps to numbers 1-9:\n");
+    printf(" 1 | 2 | 3 \n");
+    printf("-----------\n");
+    printf(" 4 | 5 | 6 \n");
+    printf("-----------\n");
+    printf(" 7 | 8 | 9 \n");
+    printf("\nPress any key to return to the menu...");
+    getch();
+}
+
+// Main function
+int main() {
+    int choice;
+    srand(time(NULL));
+
+    while (1) {
+        showMenu();
+        if (scanf("%d", &choice) != 1) {
+            while (getchar() != '\n'); // clear buffer
+            continue;
+        }
+
+        if (choice == 1) {
+            playGame(1);
+        } else if (choice == 2) {
+            playGame(2);
+        } else if (choice == 3) {
+            showHelp();
+        } else if (choice == 4) {
+            break;
+        } else {
+            printf("Invalid choice! Press any key to try again.");
+            getch();
+        }
+    }
     return 0;
 }
