@@ -21,6 +21,35 @@ This project focuses on basic programming concepts like loops, conditionals, and
 - Platform: CLI
 
 ---
+## 🛠️ Setup & Installation
+
+### Prerequisites
+- GCC compiler installed on your system
+  - **Windows:** Install [MinGW](https://www.mingw-w64.org/)
+  - **Linux:** `sudo apt install gcc`
+  - **Mac:** `xcode-select --install`
+
+### Clone the Repository
+```bash
+git clone https://github.com/simran-aug15/Projects-Of-C-Lang.git
+cd Projects-Of-C-Lang
+```
+
+### Compile & Run
+
+**tictactoe.c**
+```bash
+gcc tictactoe.c -o tictactoe
+./tictactoe
+```
+
+**tictactoe2.c**
+```bash
+gcc tictactoe2.c -o tictactoe2
+./tictactoe2
+```
+
+> 💡 On Windows replace `./tictactoe` with `tictactoe.exe`
 
 ## 🎮 Gameplay
 - Grid: 3×3  
