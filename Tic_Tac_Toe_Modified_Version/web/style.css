@@ -1,0 +1,212 @@
+:root {
+    --bg-dark: #0a0a0c;
+    --card-bg: rgba(255, 255, 255, 0.05);
+    --border-color: rgba(255, 255, 255, 0.1);
+    --accent-x: #ff007a;
+    --accent-o: #00f2ff;
+    --text-main: #ffffff;
+    --text-dim: #a0a0a0;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Outfit', sans-serif;
+    background-color: var(--bg-dark);
+    color: var(--text-main);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+}
+
+.background-blobs {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    filter: blur(80px);
+}
+
+.blob {
+    position: absolute;
+    border-radius: 50%;
+    opacity: 0.4;
+}
+
+.blob-1 {
+    width: 400px;
+    height: 400px;
+    background: var(--accent-x);
+    top: -100px;
+    left: -100px;
+    animation: move 20s infinite alternate;
+}
+
+.blob-2 {
+    width: 300px;
+    height: 300px;
+    background: var(--accent-o);
+    bottom: -50px;
+    right: -50px;
+    animation: move 15s infinite alternate-reverse;
+}
+
+@keyframes move {
+    from { transform: translate(0, 0); }
+    to { transform: translate(100px, 100px); }
+}
+
+.container {
+    width: 100%;
+    max-width: 500px;
+    padding: 20px;
+    text-align: center;
+    backdrop-filter: blur(10px);
+}
+
+header h1 {
+    font-weight: 800;
+    font-size: 3rem;
+    letter-spacing: 4px;
+    margin-bottom: 5px;
+    background: linear-gradient(to right, var(--accent-x), var(--accent-o));
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.subtitle {
+    color: var(--text-dim);
+    font-size: 0.9rem;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+}
+
+.game-info {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 15px;
+    margin-bottom: 30px;
+}
+
+.stat-card {
+    background: var(--card-bg);
+    padding: 15px;
+    border-radius: 15px;
+    border: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+}
+
+.stat-card .label {
+    font-size: 0.7rem;
+    color: var(--text-dim);
+    margin-bottom: 5px;
+}
+
+.stat-card .value {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
+
+.board-wrapper {
+    margin-bottom: 30px;
+}
+
+.status {
+    margin-bottom: 15px;
+    font-size: 1.2rem;
+    font-weight: 400;
+    color: var(--text-dim);
+}
+
+.board {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px;
+    background: var(--card-bg);
+    padding: 10px;
+    border-radius: 20px;
+    border: 1px solid var(--border-color);
+}
+
+.cell {
+    aspect-ratio: 1;
+    background: rgba(255, 255, 255, 0.03);
+    border-radius: 12px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 3rem;
+    font-weight: 800;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.cell:hover {
+    background: rgba(255, 255, 255, 0.08);
+}
+
+.cell.x {
+    color: var(--accent-x);
+    text-shadow: 0 0 15px rgba(255, 0, 122, 0.5);
+}
+
+.cell.o {
+    color: var(--accent-o);
+    text-shadow: 0 0 15px rgba(0, 242, 255, 0.5);
+}
+
+.cell.x::before { content: "X"; }
+.cell.o::before { content: "O"; }
+
+.controls {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.mode-select {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    color: var(--text-dim);
+}
+
+select {
+    background: var(--bg-dark);
+    color: var(--text-main);
+    border: 1px solid var(--border-color);
+    padding: 8px 15px;
+    border-radius: 8px;
+    outline: none;
+}
+
+button {
+    background: linear-gradient(45deg, var(--accent-x), var(--accent-o));
+    border: none;
+    padding: 15px;
+    border-radius: 12px;
+    color: white;
+    font-weight: 700;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: transform 0.2s, opacity 0.2s;
+}
+
+button:hover {
+    transform: translateY(-2px);
+    opacity: 0.9;
+}
+
+button:active {
+    transform: translateY(0);
+}
