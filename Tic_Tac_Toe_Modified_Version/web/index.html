@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tic Tac Toe | Modified Edition</title>
+    <link rel="icon" type="image/png" href="../public/tic-tac-toe-favicon.png">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="background-blobs">
+        <div class="blob blob-1"></div>
+        <div class="blob blob-2"></div>
+        <div class="blob blob-3"></div>
+    </div>
+
+    <main class="container">
+        <header>
+            <h1>TIC TAC TOE</h1>
+            <p class="subtitle">MODIFIED VERSION</p>
+        </header>
+
+        <section class="game-info">
+            <div class="stat-card" id="player-score">
+                <span class="label">PLAYER (O)</span>
+                <span class="value">0</span>
+            </div>
+            <div class="stat-card" id="draw-score">
+                <span class="label">DRAWS</span>
+                <span class="value">0</span>
+            </div>
+            <div class="stat-card" id="ai-score">
+                <span class="label">AI (X)</span>
+                <span class="value">0</span>
+            </div>
+        </section>
+
+        <div class="board-wrapper">
+            <div class="status" id="status">Your Turn</div>
+            <div class="board" id="board">
+                <div class="cell" data-index="0"></div>
+                <div class="cell" data-index="1"></div>
+                <div class="cell" data-index="2"></div>
+                <div class="cell" data-index="3"></div>
+                <div class="cell" data-index="4"></div>
+                <div class="cell" data-index="5"></div>
+                <div class="cell" data-index="6"></div>
+                <div class="cell" data-index="7"></div>
+                <div class="cell" data-index="8"></div>
+            </div>
+        </div>
+
+        <section class="controls">
+            <div class="mode-select">
+                <label>Difficulty:</label>
+                <select id="difficulty">
+                    <option value="easy">Easy</option>
+                    <option value="medium">Medium</option>
+                    <option value="hard" selected>Hard (Minimax)</option>
+                </select>
+            </div>
+            <button id="reset-btn">Reset Game</button>
+        </section>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
