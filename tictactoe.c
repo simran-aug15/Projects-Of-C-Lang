@@ -1,9 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <conio.h>
+#include <time.h>
+#define RED "\033[1;31m"
+#define GREEN "\033[1;32m"
+#define CYAN "\033[1;36m"
+#define YELLOW "\033[1;33m"
+#define RESET "\033[0m"
 
 char board[3][3] = {{'1', '2', '3'}, {'4', '5', '6'}, {'7', '8', '9'}};
-
+int xWins = 0;
+int oWins = 0;
+int draws = 0;
 // Clear the board
 void removeNumber() {
     for (int i = 0; i < 3; i++) {
@@ -15,6 +23,9 @@ void removeNumber() {
 
 // Display the board
 void draw() {
+    printf(CYAN);
+    printf("\n\n\t\t TIC TAC TOE GAME\n");
+    printf(RESET);
     printf("\n\t\t\t\t\t\t");
     printf(" %c %c %c %c %c \n", board[0][0], 186, board[0][1], 186, board[0][2]);
     printf("\t\t\t\t\t\t");
@@ -71,8 +82,19 @@ int isValidMove(int input) {
     return board[row][col] == ' ';
 }
 
+//AI move for player O
+void aiMove() {
+    int move;
+
+    do {
+        move = rand() % 9 + 1;
+    } while (!isValidMove(move));
+
+    inputValue(move, 'O');
+} 
 // Main function
 int main() {
+    srand(time(0));
     int input;
     char player = 'X'; // Player X starts the game
     int status = 0;
@@ -88,14 +110,31 @@ int main() {
         draw();
 
         if (player == 'X') {
-            printf("Player X, your turn! Enter a number (1-9): ");
+            printf(GREEN "\nPlayer X Turn -> Enter position (1-9): " RESET);
         } else {
-            printf("Player O, your turn! Enter a number (1-9): ");
+            printf(GREEN "\nPlayer O Turn -> Enter position (1-9): " RESET);
         }
         
+        if(player == 'X') {
+
+    scanf("%d", &input);
+
+    while (!isValidMove(input)) {
+        printf(RED "\nInvalid Move! Try Again: " RESET);
         scanf("%d", &input);
+    }
+
+    inputValue(input, player);
+
+}
+else {
+
+    printf(YELLOW "\nComputer is thinking...\n" RESET);
+
+    aiMove();
+}
         while (!isValidMove(input)) {
-            printf("Invalid move! Enter a valid number (1-9): ");
+            printf(RED "\nInvalid Move! Try Again: " RESET);
             scanf("%d", &input);
         }
 
@@ -105,10 +144,12 @@ int main() {
             system("cls");
             draw();
             if (player == 'X') {
-                printf("Player X wins!\n");
-            } else {
-                printf("Player O wins!\n");
-            }
+    xWins++;
+    printf(GREEN "\nPlayer X Wins!\n" RESET);
+} else {
+    oWins++;
+    printf(YELLOW "\nPlayer O Wins!\n" RESET);
+}
             return 0;
         }
 
@@ -116,7 +157,27 @@ int main() {
         system("cls");
     }
 
-    draw();
-    printf("It's a draw!\n");
-    return 0;
+draw();
+draws++;
+
+printf(CYAN "\nIt's a Draw!\n" RESET);
+
+printf("\n====================\n");
+printf("      SCOREBOARD\n");
+printf("====================\n");
+printf("Player X Wins : %d\n", xWins);
+printf("Player O Wins : %d\n", oWins);
+printf("Draws          : %d\n", draws);
+
+char choice;
+
+printf("\nPlay Again? (y/n): ");
+scanf(" %c", &choice);
+
+if(choice == 'y' || choice == 'Y') {
+    system("cls");
+    main();
+}
+
+return 0;
 }
