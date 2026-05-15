@@ -1,45 +1,120 @@
-body {
-  font-family: Arial, sans-serif;
-  text-align: center;
-  background: #f2f2f2;
-  margin-top: 40px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap');
+
+*{
+  margin:0;
+  padding:0;
+  box-sizing:border-box;
 }
 
-h1 {
-  color: #333;
+body{
+  font-family:'Poppins',sans-serif;
+  height:100vh;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  background:linear-gradient(135deg,#141e30,#243b55);
 }
 
-.board {
-  display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-gap: 5px;
-  justify-content: center;
-  margin: 20px auto;
+.game-container{
+  background:rgba(255,255,255,0.08);
+  padding:30px;
+  border-radius:25px;
+  backdrop-filter:blur(10px);
+
+  text-align:center;
+
+  box-shadow:0 8px 30px rgba(0,0,0,0.3);
 }
 
-.cell {
-  width: 100px;
-  height: 100px;
-  background: white;
-  font-size: 2rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  border: 2px solid #333;
-  cursor: pointer;
+h1{
+  color:white;
+  margin-bottom:20px;
+  font-size:2.8rem;
 }
 
-.cell:hover {
-  background: #e6e6e6;
+.status{
+  color:white;
+  margin-bottom:15px;
+  font-size:1.2rem;
 }
 
-.status {
-  font-size: 18px;
-  margin-bottom: 10px;
+.scoreboard{
+  display:flex;
+  justify-content:space-between;
+  margin-bottom:20px;
+  color:white;
+  gap:20px;
 }
 
-button {
-  padding: 10px 20px;
-  font-size: 16px;
-  cursor: pointer;
+.board{
+  display:grid;
+  grid-template-columns:repeat(3,110px);
+  gap:12px;
+  justify-content:center;
+}
+
+.cell{
+  width:110px;
+  height:110px;
+
+  background:rgba(255,255,255,0.1);
+
+  border-radius:20px;
+
+  display:flex;
+  justify-content:center;
+  align-items:center;
+
+  font-size:3rem;
+  font-weight:bold;
+
+  color:white;
+
+  cursor:pointer;
+
+  transition:0.3s;
+
+  box-shadow:0 4px 15px rgba(0,0,0,0.2);
+}
+
+.cell:hover{
+  transform:scale(1.05);
+  background:rgba(255,255,255,0.2);
+}
+
+.cell.x{
+  color:#00e5ff;
+  text-shadow:0 0 10px #00e5ff;
+}
+
+.cell.o{
+  color:#ff4d6d;
+  text-shadow:0 0 10px #ff4d6d;
+}
+
+.winner{
+  background:#00ff99 !important;
+  color:black !important;
+}
+
+button{
+  margin-top:20px;
+  padding:12px 25px;
+
+  border:none;
+  border-radius:12px;
+
+  background:linear-gradient(135deg,#00c6ff,#0072ff);
+
+  color:white;
+  font-size:1rem;
+
+  cursor:pointer;
+
+  transition:0.3s;
+}
+
+button:hover{
+  transform:scale(1.08);
 }
