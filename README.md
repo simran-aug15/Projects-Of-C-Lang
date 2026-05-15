@@ -36,3 +36,12 @@ This project focuses on basic programming concepts like loops, conditionals, and
 - UI: improved terminal display  
 - Score: track wins/losses  
 - Input: validation for invalid moves  
+- Add AI opponent
+- Add multiplayer mode
+- Imrove UI design
+- Add score history
+- Add restart option
+
+  ## Author
+
+ Developed by Suprim Kumar Roy 
