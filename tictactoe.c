@@ -93,11 +93,28 @@ int main() {
             printf("Player O, your turn! Enter a number (1-9): ");
         }
         
-        scanf("%d", &input);
+        if (scanf("%d", &input) != 1) {
+            printf("Invalid input! Please enter a number.\n");
+
+            while (getchar() != '\n');
+
+            continue;
+        
+        }
         while (!isValidMove(input)) {
             printf("Invalid move! Enter a valid number (1-9): ");
-            scanf("%d", &input);
+
+            while (scanf("%d", &input) != 1) {
+                printf("Invalid input! Please enter a number.\n");
+
+                while (getchar() != '\n');
+
+                printf("Enter a valid number (1-9): ");
+            }
         }
+
+       
+        
 
         inputValue(input, player);
 
