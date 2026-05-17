@@ -1,45 +1,189 @@
+/* Reset Default Spacing */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Body Styling */
 body {
   font-family: Arial, sans-serif;
   text-align: center;
-  background: #f2f2f2;
-  margin-top: 40px;
+
+  background: linear-gradient(
+    135deg,
+    #ff9a9e,
+    #fad0c4,
+    #a18cd1,
+    #89f7fe
+  );
+
+  background-size: 400% 400%;
+  animation: gradientBG 10s ease infinite;
+
+  min-height: 100vh;
+  padding: 40px 20px;
 }
 
+/* Animated Background */
+@keyframes gradientBG {
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* Heading */
 h1 {
-  color: #333;
+  color: #ffffff;
+  font-size: 3rem;
+  margin-bottom: 15px;
+  text-shadow: 3px 3px 8px rgba(0, 0, 0, 0.4);
+  letter-spacing: 2px;
 }
 
+/* Game Status */
+.status {
+  font-size: 22px;
+  margin-bottom: 20px;
+  color: #ffffff;
+  font-weight: bold;
+  text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+}
+
+/* Board Container */
 .board {
   display: grid;
-  grid-template-columns: repeat(3, 100px);
-  grid-gap: 5px;
+  grid-template-columns: repeat(3, 110px);
+  gap: 12px;
   justify-content: center;
+
   margin: 20px auto;
+  padding: 18px;
+
+  background: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(10px);
+
+  border-radius: 20px;
+
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.25);
 }
 
+/* Individual Cell */
 .cell {
-  width: 100px;
-  height: 100px;
-  background: white;
-  font-size: 2rem;
+  width: 110px;
+  height: 110px;
+
+  background: rgba(255, 255, 255, 0.85);
+
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  border-radius: 15px;
+
   display: flex;
   align-items: center;
   justify-content: center;
-  border: 2px solid #333;
+
+  font-size: 2.8rem;
+  font-weight: bold;
+
   cursor: pointer;
+  transition: all 0.3s ease;
 }
 
+/* Hover Effect */
 .cell:hover {
-  background: #e6e6e6;
+  background: #ffffff;
+  transform: scale(1.08);
+
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.25);
 }
 
-.status {
-  font-size: 18px;
-  margin-bottom: 10px;
+/* X Color */
+.cell.x {
+  color: #ff1744;
+  text-shadow: 0 0 10px rgba(255, 23, 68, 0.6);
 }
 
+/* O Color */
+.cell.o {
+  color: #2979ff;
+  text-shadow: 0 0 10px rgba(41, 121, 255, 0.6);
+}
+
+/* Winning Cells */
+.cell.winner {
+  background: #ffee58;
+  color: #000;
+
+  animation: glow 0.8s infinite alternate;
+}
+
+/* Glow Animation */
+@keyframes glow {
+  from {
+    box-shadow: 0 0 8px #fff176;
+  }
+
+  to {
+    box-shadow: 0 0 25px #ffd600;
+  }
+}
+
+/* Restart Button */
 button {
-  padding: 10px 20px;
+  margin-top: 20px;
+  padding: 12px 28px;
+
   font-size: 16px;
+  font-weight: bold;
+
+  background: linear-gradient(to right, #ff512f, #dd2476);
+  color: white;
+
+  border: none;
+  border-radius: 12px;
+
   cursor: pointer;
+
+  transition: all 0.3s ease;
+
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Hover */
+button:hover {
+  transform: scale(1.08);
+
+  background: linear-gradient(to right, #dd2476, #ff512f);
+
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.35);
+}
+
+/* Responsive Design */
+@media (max-width: 500px) {
+  .board {
+    grid-template-columns: repeat(3, 80px);
+    gap: 8px;
+  }
+
+  .cell {
+    width: 80px;
+    height: 80px;
+    font-size: 2rem;
+  }
+
+  h1 {
+    font-size: 2.2rem;
+  }
+
+  .status {
+    font-size: 18px;
+  }
 }
