@@ -1,20 +1,88 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-  <meta charset="UTF-8">
+  <meta charset="UTF-8" />
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0" />
+
   <title>Tic Tac Toe</title>
-  <link rel="stylesheet" href="style.css">
+
+  <link rel="stylesheet" href="style.css" />
 </head>
+
 <body>
 
+  <!-- Game Heading -->
   <h1>Tic Tac Toe</h1>
 
-  <div id="status" class="status">Player X's turn</div>
+  <!-- Score Board -->
+  <div class="scoreboard">
 
+    <div class="score x-score">
+      Player X :
+      <span id="xScore">0</span>
+    </div>
+
+    <div class="score o-score">
+      Player O :
+      <span id="oScore">0</span>
+    </div>
+
+  </div>
+
+  <!-- Game Status -->
+  <div id="status" class="status">
+    Player X's Turn
+  </div>
+
+  <!-- Game Board -->
   <div class="board" id="board"></div>
 
-  <button onclick="restartGame()">Restart</button>
+  <!-- Main Buttons -->
+  <div class="buttons">
 
+    <button onclick="restartGame()">
+      Restart Game
+    </button>
+
+    <button onclick="resetScores()">
+      Reset Scores
+    </button>
+
+  </div>
+
+  <!-- Replay / Exit Popup -->
+  <div id="gameMenu" class="game-menu hidden">
+
+    <div class="menu-box">
+
+      <h2 id="menuMessage">
+        Game Over
+      </h2>
+
+      <div class="menu-buttons">
+
+        <!-- Replay Button -->
+        <button onclick="restartGame()">
+          Play Again
+        </button>
+
+        <!-- Exit Button -->
+        <button onclick="exitGame()">
+          Exit Game
+        </button>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <!-- JavaScript File -->
   <script src="script.js"></script>
+
 </body>
+
 </html>
