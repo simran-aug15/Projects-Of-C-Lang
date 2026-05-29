@@ -1,5 +1,11 @@
 const board = document.getElementById("board");
 const statusText = document.getElementById("status");
+const xWinsText = document.getElementById("x-wins");
+const oWinsText = document.getElementById("o-wins");
+const drawsText = document.getElementById("draws");
+let xWins = 0;
+let oWins = 0;
+let draws = 0;
 
 let currentPlayer = "X";
 let gameActive = true;
@@ -57,12 +63,22 @@ function checkWinner() {
   }
 
   if (won) {
+    
+    if (currentPlayer === "X") {
+      xWins++;
+      xWinsText.innerText = xWins;
+    } else {
+      oWins++;
+      oWinsText.innerText = oWins;
+    }
     statusText.innerText = `Player ${currentPlayer} wins 🎉`;
     gameActive = false;
     return;
   }
 
   if (!gameState.includes("")) {
+    draws++;
+    drawsText.innerText = draws;
     statusText.innerText = "It's a draw 🤝";
     gameActive = false;
     return;
@@ -81,3 +97,11 @@ function restartGame() {
 }
 
 createBoard();
+const themeBtn = document.getElementById("themeBtn");
+themeBtn.addEventListener("click", () => {
+  document.body.classList.toggle("light-mode");
+  if (document.body.classList.contains("light-mode")) {
+    themeBtn.innerText = "🌞Light Mode";
+  } else {
+    themeBtn.innerText = "🌙Dark Mode"; }
+});

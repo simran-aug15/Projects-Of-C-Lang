@@ -9,6 +9,12 @@ h1 {
   color: #333;
 }
 
+.theme-container {
+ display: flex;
+ justify-content: flex-end;
+  margin: 10px 20px;
+}
+
 .board {
   display: grid;
   grid-template-columns: repeat(3, 100px);
@@ -42,4 +48,26 @@ button {
   padding: 10px 20px;
   font-size: 16px;
   cursor: pointer;
+}
+.scoreboard {
+  display: flex;
+  justify-content: center;
+  gap: 25px;
+  margin-bottom: 15px 0;
+  font-weight: bold;
+}
+.scoreboard p {
+  margin: 0;
+}
+.light-mode {
+  background: #fff;
+  color: #333;
+}
+.light-mode .cell {
+  background: #f0f0f0;
+  border-color: black;
+}
+.light-mode button {
+  background: #ddd;
+  color: black;
 }

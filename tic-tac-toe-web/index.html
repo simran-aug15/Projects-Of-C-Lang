@@ -10,7 +10,14 @@
   <h1>Tic Tac Toe</h1>
 
   <div id="status" class="status">Player X's turn</div>
-
+  <div class="scoreboard">
+    <p>X wins: <span id="x-wins">0</span></p>
+    <p>O wins: <span id="o-wins">0</span></p>
+    <p>Draws: <span id="draws">0</span></p>
+  </div>
+  <div class="theme-container">
+  <button id="themeBtn">🌙Dark Mode</button>
+  </div>
   <div class="board" id="board"></div>
 
   <button onclick="restartGame()">Restart</button>
